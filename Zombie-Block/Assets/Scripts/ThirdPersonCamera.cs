@@ -12,6 +12,7 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform head;
     public Animator animator;
     public PlayerController movement;
+    public Gun gun;
     public Vector2 pitchMinMax = new Vector2 (-40, 75);
     
     float mouseY;
@@ -21,6 +22,7 @@ public class ThirdPersonCamera : MonoBehaviour
     void LateUpdate()
     {
         mouseY -= Input.GetAxis("Mouse Y") * verSens;
+        mouseY -= gun.recoil;
         mouseY = Mathf.Clamp (mouseY, pitchMinMax.x, pitchMinMax.y);
         mouseX += Input.GetAxis("Mouse X") * horSens;
         

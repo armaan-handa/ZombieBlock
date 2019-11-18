@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         inputDir = inputDir.normalized;
 
         // select whether to run or walk
-        running = (Input.GetButton("Aim") ? false : Input.GetKey(KeyCode.LeftShift));
+        running = (Input.GetButton("Aim") ? false : (Input.GetKey(KeyCode.LeftShift) && (x != 0 || z != 0)));
         float speed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
   
         characterController.Move(inputDir * speed * Time.deltaTime);

@@ -15,6 +15,8 @@ AvatarMask:
     m_Weight: 0
   - m_Path: AKHand
     m_Weight: 0
+  - m_Path: AKReload
+    m_Weight: 0
   - m_Path: metarig
     m_Weight: 0
   - m_Path: metarig/spine
@@ -36,21 +38,21 @@ AvatarMask:
   - m_Path: metarig/spine/foot.target.R/foot.target.R_end
     m_Weight: 0
   - m_Path: metarig/spine/hand.pole.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/hand.pole.L/hand.pole.L_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/hand.pole.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/hand.pole.R/hand.pole.R_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/hand.target.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/hand.target.L/hand.target.L_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/hand.target.R
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/hand.target.R/hand.target.R_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/pelvis.L
     m_Weight: 0
   - m_Path: metarig/spine/pelvis.L/pelvis.L_end
@@ -83,7 +85,9 @@ AvatarMask:
     m_Weight: 1
   - m_Path: metarig/spine/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R
     m_Weight: 1
-  - m_Path: metarig/spine/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/hand.R_end
+  - m_Path: metarig/spine/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/ReloadBone
+    m_Weight: 1
+  - m_Path: metarig/spine/spine.001/spine.002/spine.003/shoulder.R/upper_arm.R/forearm.R/hand.R/ReloadBone/ReloadBone_end
     m_Weight: 1
   - m_Path: metarig/spine/spine.001/spine.002/spine.003/spine.004
     m_Weight: 1
@@ -96,7 +100,7 @@ AvatarMask:
   - m_Path: metarig/spine/spine.001/spine.002/weaponback
     m_Weight: 1
   - m_Path: metarig/spine/spine.001/spine.002/weaponback/weaponback_end
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/spine/thigh.L
     m_Weight: 0
   - m_Path: metarig/spine/thigh.L/shin.L
