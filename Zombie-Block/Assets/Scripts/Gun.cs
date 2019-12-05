@@ -72,7 +72,7 @@ public class Gun : MonoBehaviour
         {
             // handle reload animations 
             renderer.enabled = true;
-            reloadGunGO.active = false;
+            reloadGunGO.SetActive(false);
             animator.SetBool("isReloading", false);
         }
         // reload is pressed and magazine is not full
@@ -99,6 +99,13 @@ public class Gun : MonoBehaviour
     }
     void SemiAuto()
     {
+        if (Time.time >= nextTimeToFire)
+        {
+            // handle reload animations 
+            renderer.enabled = true;
+            reloadGunGO.SetActive(false);
+            animator.SetBool("isReloading", false);
+        }
         // reload is pressed and magazine is not full
         if (Input.GetButtonDown("Reload") && magAmount != magCapacity)
         {
@@ -182,6 +189,6 @@ public class Gun : MonoBehaviour
         animator.SetBool("isReloading", true);  // play reload animation
         renderer.enabled = false;   // make gun in hand invisible
         nextTimeToFire = Time.time + reloadTime;    // wait for reload to finish
-        reloadGunGO.active = true;  // enable animated gun
+        reloadGunGO.SetActive(true);  // enable animated gun
     }
 }
