@@ -18,9 +18,9 @@ public class Gun : MonoBehaviour
     // recoil stats
     public float hipDeviation = 0.022f;
     public float aimDeviation = 0.011f;
-    public float recoil;
-    public float maxRecoil = 1f;
-    public float recoilStrength = 0.1f;
+    // public float recoil;
+    // public float maxRecoil = 1f;
+    // public float recoilStrength = 0.1f;
     // ammo stats
     public int magCapacity = 32;
     public float reloadTime = 2f;
@@ -92,10 +92,10 @@ public class Gun : MonoBehaviour
             }
         }
         // add recoil
-        if (!Input.GetButton("Fire"))
-        {
-            recoil = Mathf.Lerp(maxRecoil, 0, Time.deltaTime * recoilRecoverySpeed);
-        }
+        // if (!Input.GetButton("Fire"))
+        // {
+        //     recoil = Mathf.Lerp(maxRecoil, 0, Time.deltaTime * recoilRecoverySpeed);
+        // }
     }
     void SemiAuto()
     {
@@ -123,11 +123,11 @@ public class Gun : MonoBehaviour
 
             }
         }
-        // add recoil
-        if (!Input.GetButton("Fire"))
-        {
-            recoil = Mathf.Lerp(maxRecoil, 0, Time.deltaTime * recoilRecoverySpeed);
-        }
+        // // add recoil
+        // if (!Input.GetButton("Fire"))
+        // {
+        //     recoil = Mathf.Lerp(maxRecoil, 0, Time.deltaTime * recoilRecoverySpeed);
+        // }
     }
 
     void Shoot()
@@ -138,21 +138,10 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
         
         RaycastHit hit;
-        float deviation = hipDeviation;
+        
         
         // set the bullet spread amount depending on wether its hipfire or ADS
-        if(shooting.isAiming)
-        {
-            deviation = aimDeviation;
-            recoil += recoilStrength/2;
-            recoil = (recoil > maxRecoil ? maxRecoil : recoil);
-        }
-        else
-        {
-            recoil += recoilStrength;
-            recoil = (recoil > maxRecoil ? maxRecoil : recoil);
-        }
-        
+        float deviation = (shooting.isAiming ? aimDeviation : hipDeviation);
         // get forward vector + random deviation for bullet spread
         Vector3 direction = mainCam.transform.forward;
         direction.x += Random.Range(-deviation, deviation);
@@ -162,7 +151,7 @@ public class Gun : MonoBehaviour
         //create raycast hit from camera in direction of shot 
         if (Physics.Raycast(mainCam.transform.position, direction, out hit))
         {
-            Debug.Log(hit.transform.name);
+            // Debug.Log(hit.transform.name);
             BHTime = 60f; // how long bullethole will last
 
             Health health = hit.transform.GetComponent<Health>();   // get health script of hit object
@@ -177,7 +166,7 @@ public class Gun : MonoBehaviour
             GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             GameObject bulletHoleGO = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
             // Destroy effect after certain time
-            Destroy(impactGO, 2f);
+            Destroy(impactGO, 0.5f);
             Destroy(bulletHoleGO, BHTime);
         }
         magAmount--;    // decrement ammo

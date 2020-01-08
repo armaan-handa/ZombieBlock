@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
         if(isGrounded && velocity.y < 0)
         {
-            velocity.y = -12f;
+            velocity.y = -0.2f;
             animator.SetBool("isJumping", false);
             jumping = false;
         }
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(JumpHeight);
+            velocity.y = Mathf.Sqrt(JumpHeight * -2f * gravity);
             animator.SetBool("isJumping", true);
             jumping = true;
 

@@ -22,7 +22,6 @@ public class ThirdPersonCamera : MonoBehaviour
     void LateUpdate()
     {
         mouseY -= Input.GetAxis("Mouse Y") * verSens;
-        mouseY -= gun.recoil;
         mouseY = Mathf.Clamp (mouseY, pitchMinMax.x, pitchMinMax.y);
         mouseX += Input.GetAxis("Mouse X") * horSens;
         
