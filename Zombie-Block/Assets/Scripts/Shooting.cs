@@ -5,7 +5,6 @@ using UnityEngine;
 public class Shooting : MonoBehaviour
 {
     public float camSpeed = 2f;
-    public float armSpeed = 10f;
     public PlayerController movement;
     public Animator animator;
     public Camera cam;

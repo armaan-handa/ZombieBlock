@@ -11,8 +11,6 @@ public class ThirdPersonCamera : MonoBehaviour
     public Transform player;
     public Transform head;
     public Animator animator;
-    public PlayerController movement;
-    public Gun gun;
     public Vector2 pitchMinMax = new Vector2 (-40, 75);
     
     float mouseY;

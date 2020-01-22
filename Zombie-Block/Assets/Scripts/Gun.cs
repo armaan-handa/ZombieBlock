@@ -13,7 +13,6 @@ public class Gun : MonoBehaviour
 
     // weapon stats
     public float damage = 10f;
-    public float range = 100f;
     public int fireRate = 20;
     // recoil stats
     public float hipDeviation = 0.022f;
@@ -31,6 +30,7 @@ public class Gun : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
     public GameObject bulletHole;
+    public GameObject impactContainer;
     public GameObject reloadGunGO;
     public Animator animator;
     public Shooting shooting;
@@ -39,13 +39,12 @@ public class Gun : MonoBehaviour
     // private variables
     float BHTime = 60f;
     float nextTimeToFire = 0f;
-    float recoilRecoverySpeed = 500f;
-    SkinnedMeshRenderer renderer;
+    SkinnedMeshRenderer _renderer;
 
     private void Start() {
         // initialize ammp and renderer
         magAmount = magCapacity; 
-        renderer = GetComponent<SkinnedMeshRenderer>();
+        _renderer = GetComponent<SkinnedMeshRenderer>();
     }
     // Update is called once per frame
     void Update()
@@ -71,7 +70,7 @@ public class Gun : MonoBehaviour
         if (Time.time >= nextTimeToFire)
         {
             // handle reload animations 
-            renderer.enabled = true;
+            _renderer.enabled = true;
             reloadGunGO.SetActive(false);
             animator.SetBool("isReloading", false);
         }
@@ -102,7 +101,7 @@ public class Gun : MonoBehaviour
         if (Time.time >= nextTimeToFire)
         {
             // handle reload animations 
-            renderer.enabled = true;
+            _renderer.enabled = true;
             reloadGunGO.SetActive(false);
             animator.SetBool("isReloading", false);
         }
@@ -163,8 +162,8 @@ public class Gun : MonoBehaviour
             }
 
             // Create impact effect and bullet hole
-            GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            GameObject bulletHoleGO = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
+            GameObject impactGO = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal), impactContainer.transform);
+            GameObject bulletHoleGO = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal), impactContainer.transform);
             // Destroy effect after certain time
             Destroy(impactGO, 0.5f);
             Destroy(bulletHoleGO, BHTime);
@@ -176,7 +175,7 @@ public class Gun : MonoBehaviour
     {
         magAmount = magCapacity;    // reset ammo
         animator.SetBool("isReloading", true);  // play reload animation
-        renderer.enabled = false;   // make gun in hand invisible
+        _renderer.enabled = false;   // make gun in hand invisible
         nextTimeToFire = Time.time + reloadTime;    // wait for reload to finish
         reloadGunGO.SetActive(true);  // enable animated gun
     }

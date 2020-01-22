@@ -327,6 +327,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 36302587}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &40623777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 40623778}
+  m_Layer: 0
+  m_Name: DamageContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &40623778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40623777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 807484341}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &60997250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -475,7 +505,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c67c3a2a43e75624e9127427386fba0b, type: 3}
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
     m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
@@ -1230,6 +1260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -8318619407311596893, guid: 3792912a47b254b4aa8ae4a57a14b4df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5680940087434332906, guid: 3792912a47b254b4aa8ae4a57a14b4df,
         type: 3}
@@ -2058,13 +2093,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 1
   damage: 25
-  range: 100
   fireRate: 9
-  hipDeviation: 0.022
-  aimDeviation: 0.005
-  recoil: 0
-  maxRecoil: 1
-  recoilStrength: 0.1
+  hipDeviation: 0
+  aimDeviation: 0
   magCapacity: 6
   reloadTime: 2
   ammoText: {fileID: 1191150789}
@@ -2073,6 +2104,7 @@ MonoBehaviour:
   impactEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 3}
   bulletHole: {fileID: 147632690783042542, guid: 34d369f59b48e4bc1a10da946853b0d4,
     type: 3}
+  impactContainer: {fileID: 1263612952}
   reloadGunGO: {fileID: 187181315}
   animator: {fileID: 2102824007}
   shooting: {fileID: 1012661261}
@@ -2322,6 +2354,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6843d2f01c8c5ea4ea5382c02e7af57c, type: 3}
+--- !u!1 &221055021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 221055022}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &221055022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221055021}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 807484341}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &227018861
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,7 +3522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 2468783220199481786, guid: 22432f4e21bd44a209c061a658bff1cd, type: 3}
-  spawnInterval: 5
+  EnemyContainer: {fileID: 221055021}
+  spawnInterval: 1
   maxDistance: 30
   minDistance: 20
   playerPos: {fileID: 1012661259}
@@ -4564,7 +4627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5537,6 +5600,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6618855152129660301}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &807484340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807484341}
+  m_Layer: 0
+  m_Name: Containers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &807484341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807484340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1263612953}
+  - {fileID: 221055022}
+  - {fileID: 40623778}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812408139 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 38905eedc2fe93347831d9ed264a7912,
@@ -6403,7 +6499,6 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
-  - component: {fileID: 963194231}
   - component: {fileID: 963194232}
   m_Layer: 10
   m_Name: Main Camera
@@ -6495,8 +6590,6 @@ MonoBehaviour:
   player: {fileID: 1012661259}
   head: {fileID: 457006458}
   animator: {fileID: 2102824007}
-  movement: {fileID: 1012661258}
-  gun: {fileID: 1624783846}
   pitchMinMax: {x: -44, y: 45}
 --- !u!114 &963194230
 MonoBehaviour:
@@ -6558,26 +6651,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &963194231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_RendererOverrideOption: 1
-  m_RendererData: {fileID: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!114 &963194232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6915,7 +6988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1012661257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.5, y: 0, z: 1.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1197407033}
@@ -6956,7 +7029,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camSpeed: 20
-  armSpeed: 10
   movement: {fileID: 1012661258}
   animator: {fileID: 2102824007}
   cam: {fileID: 963194227}
@@ -6976,8 +7048,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  disolveSpeed: 10
   healthText: {fileID: 61952722}
+  damageTextPF: {fileID: 0}
+  deathAnim: {fileID: 0}
+  isDead: 0
 --- !u!1 &1016312583 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 68292a1b590c07144825249b0f4db46b,
@@ -8209,7 +8283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8737,7 +8811,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c67c3a2a43e75624e9127427386fba0b, type: 3}
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
     m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
@@ -8990,6 +9064,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1258780874}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1263612952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1263612953}
+  m_Layer: 0
+  m_Name: ImpactContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1263612953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263612952}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 807484341}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1272320590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11224,13 +11328,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: 0
   damage: 10
-  range: 100
   fireRate: 8
-  hipDeviation: 0.022
-  aimDeviation: 0.011
-  recoil: 0
-  maxRecoil: 0
-  recoilStrength: 0.01
+  hipDeviation: 0
+  aimDeviation: 0
   magCapacity: 32
   reloadTime: 2
   ammoText: {fileID: 1191150789}
@@ -11239,6 +11339,7 @@ MonoBehaviour:
   impactEffect: {fileID: 100006, guid: 0438351a6e6422d43a09930e9be00ee9, type: 3}
   bulletHole: {fileID: 147632690783042542, guid: 34d369f59b48e4bc1a10da946853b0d4,
     type: 3}
+  impactContainer: {fileID: 1263612952}
   reloadGunGO: {fileID: 178913148}
   animator: {fileID: 2102824007}
   shooting: {fileID: 1012661261}
@@ -12865,7 +12966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

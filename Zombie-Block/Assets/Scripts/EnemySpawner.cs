@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject EnemyContainer;
     public float spawnInterval = 5f;
     public float maxDistance = 30f;
     public float minDistance = 20f;
@@ -28,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
             
             // spawn enemy at point
             Vector3 spawnPoint = new Vector3(x, 0, z);
-            GameObject.Instantiate(enemy, spawnPoint, playerPos.rotation);
+            GameObject.Instantiate(enemy, spawnPoint, playerPos.rotation, EnemyContainer.transform);
 
             timeTillNextSpawn = spawnInterval;
         }

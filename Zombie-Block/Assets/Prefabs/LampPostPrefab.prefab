@@ -28,7 +28,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9136992985329534254
 Transform:
@@ -63,7 +63,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9136992985676029503
 Transform:
@@ -129,7 +129,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -251,6 +251,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LampPost
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 5f21773145b944943a63300ff38c6f7a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 5f21773145b944943a63300ff38c6f7a,
         type: 3}

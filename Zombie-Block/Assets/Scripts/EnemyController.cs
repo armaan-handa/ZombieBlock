@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
     public float lookRadius = 10f;
     public float despawnRadius = 50f;
     public float damageDistance = 0.3f;
+    public float attackInterval = 2f;
     public float wanderRadius = 5f;
     public float wanderInterval = 5f;
     bool isRunning;
-    float timeTillNextWander;
+    public float timeTillNextWander;
     Vector3 destination;
     Health playerHealth;
     Transform target;
     UnityEngine.AI.NavMeshAgent agent;
+    float timeTillNextAttack;
 
     Animation attackAnim;
     public Animator animator;
@@ -33,6 +34,12 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameObject.GetComponent<Health>().isDead)
+        {
+            agent.ResetPath();
+            animator.SetBool("isRunning", false);
+            return;
+        }
         Random.InitState(System.DateTime.Now.Millisecond);
         float distance = Vector3.Distance(target.position, transform.position);
         if(distance >= despawnRadius)
@@ -49,7 +56,7 @@ public class EnemyController : MonoBehaviour
             isRunning = true;
 
         }
-        if (distance <= agent.stoppingDistance)
+        if (distance <= agent.stoppingDistance && timeTillNextAttack <= 0)
         {   
             // look at player
             Vector3 direction = (target.position - transform.position);
@@ -61,12 +68,14 @@ public class EnemyController : MonoBehaviour
             animator.SetTrigger("Attack");
             isRunning = false;
             // attackAnim.Play();
+            // timeTillNextAttack = attackInterval;
         }
-        if (distance <= damageDistance)
+        if (distance <= damageDistance && timeTillNextAttack <= 0)
         {
             // damage player if close enough
-            playerHealth.TakeDamage(20f);
+            playerHealth.TakeDamage(10f);
             agent.ResetPath();   
+            timeTillNextAttack = attackInterval;
         }
         else
         {
@@ -99,7 +108,7 @@ public class EnemyController : MonoBehaviour
             }
             // Debug.Log(Vector3.Distance(transform.position, destination));
         }
-
+        timeTillNextAttack -= Time.deltaTime;
     }
 
     // void OnDrawGizmosSelected() {

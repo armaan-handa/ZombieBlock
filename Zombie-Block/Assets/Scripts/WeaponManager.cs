@@ -43,17 +43,20 @@ public class WeaponManager : MonoBehaviour
 
     void SwitchWeapon()
     {   
-        if (currentPrimary)
+        if(!animator.GetBool("isReloading"))
         {
-            animator.SetFloat("Primary", 0);
-            animator.SetTrigger("GetSecondary");
+            if (currentPrimary)
+            {
+                animator.SetFloat("Primary", 0);
+                animator.SetTrigger("GetSecondary");
+            }
+            else
+            {
+                animator.SetFloat("Primary", 1);
+                animator.SetTrigger("GetPrimary");
+            }
+            switchTime = Time.time + 0.5f;
+            switching = true;
         }
-        else
-        {
-            animator.SetFloat("Primary", 1);
-            animator.SetTrigger("GetPrimary");
-        }
-        switchTime = Time.time + 0.5f;
-        switching = true;
     }
 }
